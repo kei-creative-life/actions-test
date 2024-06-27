@@ -28,7 +28,7 @@ jobs:
 
       - name: yarn install
         shell: bash
-        run: yarn install --frozen-lockfile
+        run: rm -rf node_modules && yarn install
 
       - name: yarn lint
         shell: bash
