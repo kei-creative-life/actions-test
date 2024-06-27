@@ -1,0 +1,35 @@
+name: lint
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NODE_JS_VERSION: "20"
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "${{ env.NODE_JS_VERSION }}"
+          cache-dependency-path: ./yarn.lock
+
+      - name: yarn install
+        shell: bash
+        run: rm -rf node_modules && yarn install --frozen-lockfile
+
+      - name: lint
+        shell: bash
+        run: yarn lint
