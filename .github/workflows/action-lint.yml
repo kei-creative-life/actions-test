@@ -1,8 +1,9 @@
 on:
   push:
-    branch: main
-    tags:
-      - 'v\d+'
+    branches: main
+  pull_request:
+    branches: main
+    types: [opened, reopened]
 jobs:
   test:
     strategy:
