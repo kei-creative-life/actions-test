@@ -1,4 +1,4 @@
-name: Actionlint
+name: ActionlintによるActionsの設定ファイルのチェック
 
 on:
   push:
