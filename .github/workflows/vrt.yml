@@ -37,11 +37,39 @@ jobs:
       - name: Run visual regression tests
         run: |
           npx reg-suit run
-        # env:
-        #   REG_NOTIFY_GITHUB_PLUGIN_CLIENTID: ${{ secrets.REG_NOTIFY_GITHUB_PLUGIN_CLIENTID }}
+        env:
+          REG_NOTIFY_GITHUB_PLUGIN_CLIENTID: ${{ secrets.REG_NOTIFY_GITHUB_PLUGIN_CLIENTID }}
 
       - name: Upload report
         uses: actions/upload-artifact@v3
         with:
           name: reg-suit-report
           path: .reg
+
+      - name: Comment PR with report summary
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+
+            // レポートのサマリーを読み込む
+            const reportPath = path.join(process.env.GITHUB_WORKSPACE, '.reg', 'index.html');
+            let reportContent = fs.readFileSync(reportPath, 'utf8');
+
+            // HTMLからテキストサマリーを抽出（これは簡易的な例です）
+            const summaryMatch = reportContent.match(/<div class="summary">([\s\S]*?)<\/div>/);
+            const summary = summaryMatch ? summaryMatch[1] : 'No summary found';
+
+            // プルリクエストにコメントを追加
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `## Visual Regression Test Report Summary
+
+            ${summary}
+
+            Full report is available as an artifact of this workflow run.`
+            });
