@@ -8,10 +8,14 @@ on:
       - ".github/workflows/**"
     types: [opened, synchronize, reopened, ready_for_review]
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  lint:
+  vrt:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 10
 
     steps:
       - uses: actions/checkout@v4
@@ -23,10 +27,10 @@ jobs:
           node-version: "${{ env.NODE_JS_VERSION }}"
           cache-dependency-path: ./yarn.lock
 
-      - name: Install dependencies
+      - name: yarn install
         run: rm -rf node_modules && yarn install
 
-      - name: Build project
+      - name: yarn build
         run: yarn build
 
       - name: Run visual regression tests
