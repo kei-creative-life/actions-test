@@ -1,4 +1,4 @@
-name: lint
+name: Lintによるコードのチェック
 
 on:
   pull_request:
@@ -9,7 +9,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  NODE_JS_VERSION: "20"
+  NODE_JS_VERSION: "20.x"
 
 jobs:
   lint:
@@ -28,8 +28,8 @@ jobs:
 
       - name: yarn install
         shell: bash
-        run: rm -rf node_modules && yarn install --frozen-lockfile
+        run: yarn install --frozen-lockfile
 
-      - name: lint
+      - name: yarn lint
         shell: bash
         run: yarn lint
