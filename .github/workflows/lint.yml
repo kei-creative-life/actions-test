@@ -2,6 +2,9 @@ name: Lintによるコードのチェック
 
 on:
   pull_request:
+    branches: [main]
+    paths:
+      - "src/**"
     types: [opened, synchronize]
 
 concurrency:
