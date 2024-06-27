@@ -1,24 +1,23 @@
+name: Actionlint
+
 on:
   push:
-    branches: main
+    branches: [main]
   pull_request:
-    branches: main
+    branches: [main]
     types: [opened, reopened]
+
 jobs:
-  test:
-    strategy:
-      matrix:
-        os: [macos-latest, linux-latest]
-    runs-on: ${{ matrix.os }}
+  actionlint:
+    runs-on: ubuntu-latest
     steps:
-      - run: echo "Checking commit '${{ github.event.head_commit.message }}'"
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node_version: 18.x
-      - uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: ${{ matrix.platform }}-node-${{ hashFiles('**/package-lock.json') }}
-        if: ${{ github.repository.permissions.admin == true }}
-      - run: npm install && npm test
+
+      - name: Download actionlint
+        id: get_actionlint
+        run: bash <(curl https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
+        shell: bash
+
+      - name: Check workflow files
+        run: ${{ steps.get_actionlint.outputs.executable }} -color
+        shell: bash
