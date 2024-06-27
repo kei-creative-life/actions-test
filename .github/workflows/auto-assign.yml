@@ -1,4 +1,4 @@
-name: Set Assignee
+name: PRのAssineesを自動設定
 
 on:
   pull_request:
