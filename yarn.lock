@@ -1922,6 +1922,7 @@ __metadata:
     typescript: "npm:^5.5.2"
     vite: "npm:^5.3.1"
     vue: "npm:^3.4.29"
+    vue-eslint-parser: "npm:^9.4.3"
   languageName: unknown
   linkType: soft
 
@@ -2558,7 +2559,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue-eslint-parser@npm:^9.3.1, vue-eslint-parser@npm:^9.4.2":
+"vue-eslint-parser@npm:^9.3.1, vue-eslint-parser@npm:^9.4.2, vue-eslint-parser@npm:^9.4.3":
   version: 9.4.3
   resolution: "vue-eslint-parser@npm:9.4.3"
   dependencies:
