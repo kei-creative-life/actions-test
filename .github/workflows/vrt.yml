@@ -74,9 +74,22 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./reg
-          destination_dir: pr-${{ github.event.pull_request.number }}
+          destination_dir: ${{ github.head_ref }}
 
-      - name: Display Report URL
-        run: |
-          echo "VRTレポートが生成されました。以下のURLで確認できます："
-          echo "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/pr-${{ github.event.pull_request.number }}/"
+      - name: find comment
+        uses: peter-evans/find-comment@v2
+        id: fc
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: "github-actions[bot]"
+          body-includes: reg-suit report
+
+      - name: upsert comment
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            reg-suit report
+            https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/${{github.head_ref}}
+          edit-mode: replace
