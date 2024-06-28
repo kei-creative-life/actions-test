@@ -108,7 +108,12 @@ jobs:
           comment-id: ${{ steps.find-reg-suit-comment.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            スクリーンショットに差分があります。
+            🎉 スクリーンショットに差分があります。
+
+            - 🟢 Changed items: ${{ steps.parse-report.outputs.changed_items }}
+            - 🔵 New items: ${{ steps.parse-report.outputs.new_items }}
+            - 🔴 Deleted items: ${{ steps.parse-report.outputs.deleted_items }}
+            - 🟡 Passed items: ${{ steps.parse-report.outputs.passed_items }}
 
             VRTレポート: ${{ steps.deployment.outputs.page_url }} を確認してください。
           edit-mode: replace
