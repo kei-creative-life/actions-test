@@ -38,6 +38,10 @@ jobs:
       - name: yarn build
         run: yarn build
 
+      - name: install japanese font
+        run: |
+          sudo apt install fonts-ipafont fonts-ipaexfont
+
       - name: Run visual regression tests
         run: |
           npx reg-suit run
@@ -49,3 +53,25 @@ jobs:
         with:
           name: reg-suit-report
           path: .reg
+
+  deploy-report:
+    needs: vrt
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download reg-suit report
+        uses: actions/download-artifact@v3
+        with:
+          name: reg-suit-report
+          path: .reg
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./reg
+          destination_dir: pr-${{ github.event.pull_request.number }}
