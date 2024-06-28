@@ -24,3 +24,9 @@ dist-ssr
 *.sw?
 .yarn
 .reg
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/__snapshot__/
+/__snapshots__/
