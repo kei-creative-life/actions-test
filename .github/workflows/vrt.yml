@@ -76,14 +76,7 @@ jobs:
           publish_dir: ./reg
           destination_dir: pr-${{ github.event.pull_request.number }}
 
-      - name: Comment PR
-        uses: actions/github-script@v6
-        with:
-          github-token: ${{secrets.GITHUB_TOKEN}}
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: `VRTレポートが生成されました。以下のURLで確認できます：\nhttps://${context.repo.owner}.github.io/${context.repo.repo}/pr-${context.issue.number}/`
-            })
+      - name: Display Report URL
+        run: |
+          echo "VRTレポートが生成されました。以下のURLで確認できます："
+          echo "https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/pr-${{ github.event.pull_request.number }}/"
