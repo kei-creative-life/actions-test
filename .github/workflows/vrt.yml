@@ -89,7 +89,7 @@ jobs:
 
       - name: Display deployed URL
         run: |
-          echo "Deployed to: ${{ steps.deployment.outputs.page_url }}"
+          echo "Deployed to: ${{ steps.deployment.outputs.page_url }}${{ github.event.pull_request.number }}"
 
       - name: find comment
         uses: peter-evans/find-comment@v2
@@ -106,5 +106,5 @@ jobs:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
             スクリーンショットに差分があります。
-            ${{ steps.deployment.outputs.page_url }} を確認してください。
+            ${{ steps.deployment.outputs.page_url }}${{ github.event.pull_request.number }} を確認してください。
           edit-mode: replace
