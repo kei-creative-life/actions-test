@@ -94,6 +94,14 @@ jobs:
         run: |
           echo "Deployed to: ${{ steps.deployment.outputs.page_url }}"
 
+      - name: Parse reg-suit report
+        id: parse-report
+        run: |
+          NEW_ITEMS=$(grep -c '"status": "new"' pr-${{ github.event.pull_request.number }}/report.json || echo "0")
+          DELETED_ITEMS=$(grep -c '"status": "deleted"' pr-${{ github.event.pull_request.number }}/report.json || echo "0")
+          echo "new_items=$NEW_ITEMS" >> $GITHUB_OUTPUT
+          echo "deleted_items=$DELETED_ITEMS" >> $GITHUB_OUTPUT
+
       - name: Find reg-suit comment
         uses: peter-evans/find-comment@v2
         id: find-reg-suit-comment
@@ -108,7 +116,7 @@ jobs:
           comment-id: ${{ steps.find-reg-suit-comment.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            ${{ steps.parse-report.outputs.new_items != '0' || steps.parse-report.outputs.deleted_items != '0' && '⚠️' || '✅' }} スクリーンショット差分レポート
+            🎉 スクリーンショットに差分があります。
 
             - 🟢 Changed items: ${{ steps.parse-report.outputs.changed_items }}
             - 🔵 New items: ${{ steps.parse-report.outputs.new_items }}
