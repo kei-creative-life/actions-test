@@ -89,22 +89,34 @@ jobs:
 
       - name: Display deployed URL
         run: |
-          echo "Deployed to: ${{ steps.deployment.outputs.page_url }}${{ github.event.pull_request.number }}"
+          echo "Deployed to: ${{ steps.deployment.outputs.page_url }}"
 
-      - name: find comment
+      - name: Find reg-suit comment
         uses: peter-evans/find-comment@v2
-        id: fc
+        id: find-reg-suit-comment
         with:
           issue-number: ${{ github.event.pull_request.number }}
-          comment-author: "github-actions[bot]"
-          body-includes: reg-suit report
+          comment-author: "reg-suit[bot]"
+          body-includes: "reg-suit detected visual differences"
 
-      - name: upsert comment
+      - name: Update reg-suit comment
         uses: peter-evans/create-or-update-comment@v3
         with:
-          comment-id: ${{ steps.fc.outputs.comment-id }}
+          comment-id: ${{ steps.find-reg-suit-comment.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            スクリーンショットに差分があります。
-            ${{ steps.deployment.outputs.page_url }}${{ github.event.pull_request.number }} を確認してください。
+            reg-suit detected visual differences.
+
+            View the full report here: ${{ steps.deployment.outputs.page_url }}
+
+            How can I change the check status?
           edit-mode: replace
+      # - name: upsert comment
+      #   uses: peter-evans/create-or-update-comment@v3
+      #   with:
+      #     comment-id: ${{ steps.fc.outputs.comment-id }}
+      #     issue-number: ${{ github.event.pull_request.number }}
+      #     body: |
+      #       スクリーンショットに差分があります。
+      #       ${{ steps.deployment.outputs.page_url }}を確認してください。
+      #     edit-mode: replace
