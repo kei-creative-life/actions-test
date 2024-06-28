@@ -108,7 +108,7 @@ jobs:
           comment-id: ${{ steps.find-reg-suit-comment.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            🎉 スクリーンショットに差分があります。
+            ${{ steps.parse-report.outputs.new_items != '0' || steps.parse-report.outputs.deleted_items != '0' && '⚠️' || '✅' }} スクリーンショット差分レポート
 
             - 🟢 Changed items: ${{ steps.parse-report.outputs.changed_items }}
             - 🔵 New items: ${{ steps.parse-report.outputs.new_items }}
