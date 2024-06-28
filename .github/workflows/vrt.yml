@@ -110,5 +110,5 @@ jobs:
           body: |
             スクリーンショットに差分があります。
 
-            VRTレポート: ${{ steps.deployment.outputs.page_url }}を確認してください。
+            VRTレポート: ${{ steps.deployment.outputs.page_url }} を確認してください。
           edit-mode: replace
