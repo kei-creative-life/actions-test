@@ -102,18 +102,6 @@ jobs:
           comment-author: "reg-suit[bot]"
           body-includes: "reg-suit detected visual differences"
 
-      - name: Parse reg-suit report
-        id: parse-report
-        run: |
-          changed=$(grep -c '"status":"changed"' .reg/out.json || echo "0")
-          new=$(grep -c '"status":"new"' .reg/out.json || echo "0")
-          deleted=$(grep -c '"status":"deleted"' .reg/out.json || echo "0")
-          passed=$(grep -c '"status":"passed"' .reg/out.json || echo "0")
-          echo "changed_items=$changed" >> $GITHUB_OUTPUT
-          echo "new_items=$new" >> $GITHUB_OUTPUT
-          echo "deleted_items=$deleted" >> $GITHUB_OUTPUT
-          echo "passed_items=$passed" >> $GITHUB_OUTPUT
-
       - name: Update reg-suit comment
         uses: peter-evans/create-or-update-comment@v3
         with:
@@ -121,11 +109,6 @@ jobs:
           issue-number: ${{ github.event.pull_request.number }}
           body: |
             🎉 スクリーンショットに差分があります。
-
-            - 🟢 Changed items: ${{ steps.parse-report.outputs.changed_items }}
-            - 🔵 New items: ${{ steps.parse-report.outputs.new_items }}
-            - 🔴 Deleted items: ${{ steps.parse-report.outputs.deleted_items }}
-            - 🟡 Passed items: ${{ steps.parse-report.outputs.passed_items }}
 
             VRTレポート: ${{ steps.deployment.outputs.page_url }} を確認してください。
           edit-mode: replace
