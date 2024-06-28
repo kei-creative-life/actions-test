@@ -1,0 +1,114 @@
+name: VRTの実行
+
+on:
+  pull_request:
+    paths:
+      - "src/**"
+      - "screenshots/**"
+      - ".github/workflows/**"
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  vrt:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "${{ env.NODE_JS_VERSION }}"
+          cache-dependency-path: ./yarn.lock
+
+      - name: yarn install
+        run: rm -rf node_modules && yarn install
+
+      - name: yarn build
+        run: yarn build
+
+      - name: install japanese font
+        run: |
+          sudo apt install fonts-ipafont fonts-ipaexfont
+
+      - name: Run visual regression tests
+        run: |
+          npx reg-suit run
+        env:
+          REG_NOTIFY_GITHUB_PLUGIN_CLIENTID: ${{ secrets.REG_NOTIFY_GITHUB_PLUGIN_CLIENTID }}
+
+      - name: Upload report
+        uses: actions/upload-artifact@v3
+        with:
+          name: reg-suit-report
+          path: .reg
+
+  deploy-report:
+    needs: vrt
+    environment:
+      name: pr-${{ github.event.pull_request.number }}
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      pages: write
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download reg-suit report
+        uses: actions/download-artifact@v3
+        with:
+          name: reg-suit-report
+          path: .reg
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ".reg"
+          name: pr-${{ github.event.pull_request.number }}
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+        with:
+          artifact_name: pr-${{ github.event.pull_request.number }}
+
+      - name: Display deployed URL
+        run: |
+          echo "Deployed to: ${{ steps.deployment.outputs.page_url }}"
+
+      - name: Find reg-suit comment
+        uses: peter-evans/find-comment@v2
+        id: find-reg-suit-comment
+        with:
+          issue-number: ${{ github.event.pull_request.number }}
+          comment-author: "reg-suit[bot]"
+          body-includes: "reg-suit detected visual differences"
+
+      - name: Update reg-suit comment
+        uses: peter-evans/create-or-update-comment@v3
+        with:
+          comment-id: ${{ steps.find-reg-suit-comment.outputs.comment-id }}
+          issue-number: ${{ github.event.pull_request.number }}
+          body: |
+            🎉 スクリーンショットに差分があります。
+
+            VRTレポート: ${{ steps.deployment.outputs.page_url }} を確認してください。
+          edit-mode: replace
