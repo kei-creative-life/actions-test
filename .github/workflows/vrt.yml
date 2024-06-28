@@ -57,7 +57,7 @@ jobs:
   deploy-report:
     needs: vrt
     environment:
-      name: github-pages
+      name: pr-${{ github.event.pull_request.number }}
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     permissions:
@@ -82,10 +82,13 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: ".reg"
+          name: pr-${{ github.event.pull_request.number }}
 
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: pr-${{ github.event.pull_request.number }}
 
       - name: Display deployed URL
         run: |
@@ -105,18 +108,7 @@ jobs:
           comment-id: ${{ steps.find-reg-suit-comment.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
-            reg-suit detected visual differences.
+            スクリーンショットに差分があります。
 
-            View the full report here: ${{ steps.deployment.outputs.page_url }}
-
-            How can I change the check status?
+            VRTレポート: ${{ steps.deployment.outputs.page_url }}を確認してください。
           edit-mode: replace
-      # - name: upsert comment
-      #   uses: peter-evans/create-or-update-comment@v3
-      #   with:
-      #     comment-id: ${{ steps.fc.outputs.comment-id }}
-      #     issue-number: ${{ github.event.pull_request.number }}
-      #     body: |
-      #       スクリーンショットに差分があります。
-      #       ${{ steps.deployment.outputs.page_url }}を確認してください。
-      #     edit-mode: replace
