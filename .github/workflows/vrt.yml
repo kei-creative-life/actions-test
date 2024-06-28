@@ -109,10 +109,12 @@ jobs:
           new="$(grep -c '"status":"new"' .reg/out.json || echo "0")"
           deleted="$(grep -c '"status":"deleted"' .reg/out.json || echo "0")"
           passed="$(grep -c '"status":"passed"' .reg/out.json || echo "0")"
-          echo "changed_items=${changed}" >> "$GITHUB_OUTPUT"
-          echo "new_items=${new}" >> "$GITHUB_OUTPUT"
-          echo "deleted_items=${deleted}" >> "$GITHUB_OUTPUT"
-          echo "passed_items=${passed}" >> "$GITHUB_OUTPUT"
+          {
+            echo "changed_items=${changed}"
+            echo "new_items=${new}"
+            echo "deleted_items=${deleted}"
+            echo "passed_items=${passed}"
+          } >> "$GITHUB_OUTPUT"
 
       - name: Update reg-suit comment
         uses: peter-evans/create-or-update-comment@v3
