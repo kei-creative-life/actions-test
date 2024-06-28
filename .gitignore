@@ -29,4 +29,3 @@ dist-ssr
 /blob-report/
 /playwright/.cache/
 /__snapshot__/
-/__snapshots__/
