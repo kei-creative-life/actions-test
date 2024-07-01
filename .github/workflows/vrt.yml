@@ -99,11 +99,11 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ".reg"
-          name: pr-${{ github.event.pull_request.number }}
+      # - name: Upload artifact
+      #   uses: actions/upload-pages-artifact@v3
+      #   with:
+      #     path: ".reg"
+      #     name: pr-${{ github.event.pull_request.number }}
 
       - name: Deploy to GitHub Pages
         id: deployment
@@ -123,13 +123,28 @@ jobs:
           comment-author: "reg-suit[bot]"
           body-includes: "reg-suit detected visual differences"
 
+      - name: Read reg-suit report
+        id: reg-report
+        run: |
+          echo "new_items=$(jq '.newItems | length' .reg/out.json)" >> $GITHUB_OUTPUT
+          echo "diff_items=$(jq '.diffItems | length' .reg/out.json)" >> $GITHUB_OUTPUT
+          echo "deleted_items=$(jq '.deletedItems | length' .reg/out.json)" >> $GITHUB_OUTPUT
+          echo "passed_items=$(jq '.passedItems | length' .reg/out.json)" >> $GITHUB_OUTPUT
+
       - name: Update reg-suit comment
         uses: peter-evans/create-or-update-comment@v3
         with:
           comment-id: ${{ steps.find-reg-suit-comment.outputs.comment-id }}
           issue-number: ${{ github.event.pull_request.number }}
           body: |
+            # VRTレポート
+
             🎉 スクリーンショットに差分があります。
 
-            VRTレポート: ${{ steps.deployment.outputs.page_url }} を確認してください。
+            :green_circle: New Items: ${{ steps.reg-report.outputs.new_items }}
+            :yellow_circle: Diff Items: ${{ steps.reg-report.outputs.diff_items }}
+            :red_circle: Deleted Items: ${{ steps.reg-report.outputs.deleted_items }}
+            :blue_circle: Passed Items: ${{ steps.reg-report.outputs.passed_items }}
+
+            詳細は [こちら](${{ steps.deployment.outputs.page_url }}) をご覧ください。
           edit-mode: replace
