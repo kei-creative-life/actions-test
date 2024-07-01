@@ -1,6 +1,6 @@
 {
   "core": {
-    "workingDir": ".reg",
+    "workingDir": "tests/.reg",
     "actualDir": "./tests/__snapshot__",
     "thresholdRate": 0,
     "addIgnore": true,
