@@ -38,7 +38,7 @@ jobs:
       #     path: playwright-report/
       #     retention-days: 30
 
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: playwright-snapshot
@@ -81,7 +81,7 @@ jobs:
           REG_NOTIFY_GITHUB_PLUGIN_CLIENTID: ${{ secrets.REG_NOTIFY_GITHUB_PLUGIN_CLIENTID }}
 
       - name: Upload report
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: reg-suit-report
           path: .reg
@@ -156,7 +156,7 @@ jobs:
             :green_circle: New Items: ${{ steps.reg-report.outputs.new_items }}
             :yellow_circle: Diff Items: ${{ steps.reg-report.outputs.diff_items }}
             :red_circle: Deleted Items: ${{ steps.reg-report.outputs.deleted_items }}
-            :blue_circle: Passed Items: ${{ steps.reg-report.outputs.passed_items }}
+            :orange_circle: Passed Items: ${{ steps.reg-report.outputs.passed_items }}
 
             詳細は [こちら](${{ steps.deployment.outputs.page_url }}) をご覧ください。
           edit-mode: replace
