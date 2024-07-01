@@ -99,11 +99,11 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      # - name: Upload artifact
-      #   uses: actions/upload-pages-artifact@v3
-      #   with:
-      #     path: ".reg"
-      #     name: pr-${{ github.event.pull_request.number }}
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ".reg"
+          name: pr-${{ github.event.pull_request.number }}
 
       - name: Deploy to GitHub Pages
         id: deployment
