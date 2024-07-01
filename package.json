@@ -9,12 +9,16 @@
     "preview": "vite preview",
     "lint": "eslint --fix src/**/*.{ts,vue}",
     "vrt": "reg-suit run",
-    "vrt:local": "reg-suit run -c regconfig.local.json"
+    "vrt:local": "reg-suit run -c regconfig.local.json",
+    "e2e:all": "playwright test",
+    "e2e:chromium": "playwright test --project=chromium"
   },
   "dependencies": {
     "vue": "^3.4.29"
   },
   "devDependencies": {
+    "@playwright/test": "^1.45.0",
+    "@types/node": "^20.14.9",
     "@typescript-eslint/eslint-plugin": "^7.14.1",
     "@typescript-eslint/parser": "^7.14.1",
     "@vitejs/plugin-vue": "^5.0.5",
