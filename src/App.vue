@@ -14,6 +14,7 @@ import HelloWorld from "./components/HelloWorld.vue";
   <HelloWorld msg="Vite + Vue" />
   <h1>これはVRTのテストです</h1>
   <h2>追加の文言です！</h2>
+  <h3>追加の文言です！</h3>
 </template>
 
 <style scoped>
