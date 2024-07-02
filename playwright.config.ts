@@ -12,7 +12,6 @@ import { defineConfig, devices } from "@playwright/test";
  */
 export default defineConfig({
   testDir: "./tests",
-  snapshotDir: "tests/__snapshot__",
   outputDir: "./tests/playwright-report",
   reporter: [
     ["html", { outputFolder: "./tests/playwright-report" }],
