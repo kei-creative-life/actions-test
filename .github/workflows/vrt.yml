@@ -44,7 +44,6 @@ jobs:
 
   take_actual_screenshots:
     timeout-minutes: 60
-    needs: take_expected_screenshots
     runs-on: ubuntu-latest
     steps:
       - name: Checkout topic branch
@@ -81,7 +80,7 @@ jobs:
   vrt:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    needs: take_actual_screenshots
+    needs: [take_expected_screenshots, take_actual_screenshots]
     steps:
       - name: Checkout topic branch
         uses: actions/checkout@v4
@@ -107,21 +106,18 @@ jobs:
       #     sudo apt install fonts-ipafont fonts-ipaexfont
 
       # TODO: この段階では.regは作成されてないのでエラーになる
-      - name: Create empty directory
-        run: |
-          mkdir -p tests/.reg/actual
-          mkdir -p tests/.reg/expected
-
-      - name: Check downloaded files
-        run: |
-          ls -R tests/.reg/actual
-          ls -R tests/.reg/expected
 
       - name: Download actual snapshot to .reg/actual dir
         uses: actions/download-artifact@v3
         with:
           name: playwright-actual-snapshot
           path: tests/.reg/actual
+
+      - name: Check directory structure
+        run: |
+          ls -R /home/runner/work/actions-test/actions-test/tests/.reg
+          echo "Actual directory contents:"
+          ls -la /home/runner/work/actions-test/actions-test/tests/.reg/actual
 
       - name: Download expected snapshot to .reg/expected dir
         uses: actions/download-artifact@v3
