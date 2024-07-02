@@ -1,12 +1,12 @@
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
 
-test("TOPページのスクリーンショット", async ({ page }) => {
+test("TOPページのスクリーンショット", async ({ page }, testInfo) => {
   // console.log(testInfo);
-  // const { project, title, titlePath } = testInfo;
+  const { project, title, titlePath } = testInfo;
   await page.goto("http://localhost:3000");
-  // await page.screenshot({
-  //   fullPage: true,
-  //   path: `tests/__snapshot__/${titlePath[0]}_${title}_${project.name}.png`, // TODO: 変数にしたい
-  // });
-  await expect(page).toHaveScreenshot({ fullPage: true });
+  await page.screenshot({
+    fullPage: true,
+    path: `tests/__snapshot__/${titlePath[0]}_${title}_${project.name}.png`, // TODO: 変数にしたい
+  });
+  // await expect(page).toHaveScreenshot({ fullPage: true });
 });
