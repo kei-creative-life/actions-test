@@ -1,7 +1,7 @@
 {
   "core": {
-    "workingDir": "/home/runner/work/actions-test/actions-test/tests/.reg",
-    "actualDir": "/home/runner/work/actions-test/actions-test/tests/.reg/actual",
+    "workingDir": "tests/.reg",
+    "actualDir": "tests/.reg/actual",
     "thresholdRate": 0,
     "addIgnore": true,
     "ximgdiff": {
