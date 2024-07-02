@@ -131,6 +131,11 @@ jobs:
           echo "Expected directory contents:"
           ls -la /home/runner/work/actions-test/actions-test/tests/.reg/expected
 
+      - name: Check directory details
+        run: |
+          ls -ld /home/runner/work/actions-test/actions-test/tests/.reg/actual
+          file /home/runner/work/actions-test/actions-test/tests/.reg/actual
+
       - name: Run visual regression tests
         run: |
           yarn run vrt
