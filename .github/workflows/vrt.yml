@@ -136,6 +136,9 @@ jobs:
           ls -la /home/runner/work/actions-test/actions-test/tests/.reg/actual
           echo "Directory exists before reg-suit execution"
 
+      - name: Check reg-suit config
+        run: cat /home/runner/work/actions-test/actions-test/regconfig.json
+
       - name: Run visual regression tests
         run: |
           cd /home/runner/work/actions-test/actions-test
