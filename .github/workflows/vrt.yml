@@ -112,6 +112,11 @@ jobs:
           mkdir -p tests/.reg/actual
           mkdir -p tests/.reg/expected
 
+      - name: Check downloaded files
+        run: |
+          ls -R tests/.reg/actual
+          ls -R tests/.reg/expected
+
       - name: Download actual snapshot to .reg/actual dir
         uses: actions/download-artifact@v3
         with:
