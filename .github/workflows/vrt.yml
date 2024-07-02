@@ -138,6 +138,7 @@ jobs:
 
       - name: Run visual regression tests
         run: |
+          cd /home/runner/work/actions-test/actions-test
           yarn run vrt
         env:
           REG_NOTIFY_GITHUB_PLUGIN_CLIENTID: ${{ secrets.REG_NOTIFY_GITHUB_PLUGIN_CLIENTID }}
