@@ -107,17 +107,22 @@ jobs:
       #     sudo apt install fonts-ipafont fonts-ipaexfont
 
       # TODO: この段階では.regは作成されてないのでエラーになる
+      - name: Create empty directory
+        run: |
+          mkdir -p tests/.reg/actual
+          mkdir -p tests/.reg/expected
+
       - name: Download actual snapshot to .reg/actual dir
         uses: actions/download-artifact@v3
         with:
           name: playwright-actual-snapshot
-          path: tests/__screenshot__/actual
+          path: tests/.reg/actual
 
       - name: Download expected snapshot to .reg/expected dir
         uses: actions/download-artifact@v3
         with:
           name: playwright-expected-snapshot
-          path: tests/__screenshot__/expected
+          path: tests/.reg/expected
 
       - name: Run visual regression tests
         run: |
