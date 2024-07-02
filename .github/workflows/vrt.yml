@@ -131,10 +131,10 @@ jobs:
           echo "Expected directory contents:"
           ls -la /home/runner/work/actions-test/actions-test/tests/.reg/expected
 
-      - name: Check directory details
+      - name: Verify directory before reg-suit
         run: |
-          ls -ld /home/runner/work/actions-test/actions-test/tests/.reg/actual
-          file /home/runner/work/actions-test/actions-test/tests/.reg/actual
+          ls -la /home/runner/work/actions-test/actions-test/tests/.reg/actual
+          echo "Directory exists before reg-suit execution"
 
       - name: Run visual regression tests
         run: |
