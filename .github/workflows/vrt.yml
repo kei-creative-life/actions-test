@@ -111,7 +111,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: playwright-actual-snapshot
-          path: /home/runner/work/actions-test/actions-test/tests/.reg/actual
+          path: tests/.reg/actual
 
       - name: Check actual directory structure
         run: |
@@ -123,17 +123,18 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: playwright-expected-snapshot
-          path: /home/runner/work/actions-test/actions-test/tests/.reg/expected
+          path: tests/.reg/expected
 
       - name: Check expected directory structure
         run: |
-          ls -R /home/runner/work/actions-test/actions-test/tests/.reg
+          ls -R tests/.reg
           echo "Expected directory contents:"
           ls -la /home/runner/work/actions-test/actions-test/tests/.reg/expected
 
       - name: Verify directory before reg-suit
         run: |
-          ls -la /home/runner/work/actions-test/actions-test/tests/.reg/actual
+          mkdir -p tests/.reg/actual
+          ls -la tests/.reg/actual
           echo "Directory exists before reg-suit execution"
 
       - name: Check reg-suit config
@@ -141,7 +142,6 @@ jobs:
 
       - name: Run visual regression tests
         run: |
-          cd /home/runner/work/actions-test/actions-test
           yarn run vrt
         env:
           REG_NOTIFY_GITHUB_PLUGIN_CLIENTID: ${{ secrets.REG_NOTIFY_GITHUB_PLUGIN_CLIENTID }}
