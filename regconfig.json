@@ -1,7 +1,8 @@
 {
   "core": {
     "workingDir": "tests/.reg",
-    "actualDir": "tests/.reg/actual",
+    "actualDir": "tests/__screenshot__/actual",
+    "expectedDir": "tests/__screenshot__/expected",
     "thresholdRate": 0,
     "addIgnore": true,
     "ximgdiff": {
