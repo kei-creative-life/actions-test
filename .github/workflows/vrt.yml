@@ -113,7 +113,7 @@ jobs:
           name: playwright-actual-snapshot
           path: tests/.reg/actual
 
-      - name: Check directory structure
+      - name: Check actual directory structure
         run: |
           ls -R /home/runner/work/actions-test/actions-test/tests/.reg
           echo "Actual directory contents:"
@@ -124,6 +124,12 @@ jobs:
         with:
           name: playwright-expected-snapshot
           path: tests/.reg/expected
+
+      - name: Check expected directory structure
+        run: |
+          ls -R /home/runner/work/actions-test/actions-test/tests/.reg
+          echo "Expected directory contents:"
+          ls -la /home/runner/work/actions-test/actions-test/tests/.reg/expected
 
       - name: Run visual regression tests
         run: |
