@@ -84,9 +84,9 @@ jobs:
     steps:
       - name: Checkout topic branch
         uses: actions/checkout@v4
-        # with:
-        #   fetch-depth: 0
-        #   ref: ${{ github.event.pull_request.head.ref }}
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Setup node
         uses: actions/setup-node@v4
@@ -111,7 +111,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: playwright-actual-snapshot
-          path: tests/.reg/actual
+          path: /home/runner/work/actions-test/actions-test/tests/.reg/actual
 
       - name: Check actual directory structure
         run: |
@@ -123,7 +123,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: playwright-expected-snapshot
-          path: tests/.reg/expected
+          path: /home/runner/work/actions-test/actions-test/tests/.reg/expected
 
       - name: Check expected directory structure
         run: |
