@@ -137,9 +137,14 @@ jobs:
           ls -la tests/.reg/actual
           echo "Directory exists before reg-suit execution"
 
+      - name: Check filesystem
+        run: mount | grep 'on /home/runner/work'
+
       - name: Run visual regression tests
-        working-directory: /home/runner/work/actions-test/actions-test
         run: |
+          pwd
+          ls -la /home/runner/work/actions-test/actions-test/tests/.reg/
+          ls -la /home/runner/work/actions-test/actions-test/tests/.reg/actual
           yarn vrt run
         env:
           REG_NOTIFY_GITHUB_PLUGIN_CLIENTID: ${{ secrets.REG_NOTIFY_GITHUB_PLUGIN_CLIENTID }}
