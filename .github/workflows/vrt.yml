@@ -138,6 +138,7 @@ jobs:
           echo "Directory exists before reg-suit execution"
 
       - name: Run visual regression tests
+        working-directory: /home/runner/work/actions-test/actions-test
         run: |
           yarn vrt run
         env:
