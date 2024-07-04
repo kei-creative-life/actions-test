@@ -136,15 +136,12 @@ jobs:
           mkdir -p tests/.reg/actual
           ls -la tests/.reg/actual
           echo "Directory exists before reg-suit execution"
-          npx reg-suit run
+
+      - name: Run visual regression tests
+        run: |
+          yarn vrt run
         env:
           REG_NOTIFY_GITHUB_PLUGIN_CLIENTID: ${{ secrets.REG_NOTIFY_GITHUB_PLUGIN_CLIENTID }}
-
-      # - name: Run visual regression tests
-      #   run: |
-      #     reg-suit run
-      #   env:
-      #     REG_NOTIFY_GITHUB_PLUGIN_CLIENTID: ${{ secrets.REG_NOTIFY_GITHUB_PLUGIN_CLIENTID }}
 
       - name: Upload reg report
         uses: actions/upload-artifact@v3
