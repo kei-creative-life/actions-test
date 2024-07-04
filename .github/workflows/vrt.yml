@@ -131,17 +131,20 @@ jobs:
           echo "Expected directory contents:"
           ls -la /home/runner/work/actions-test/actions-test/tests/.reg/expected
 
-      - name: Verify directory before reg-suit
-        run: |
-          mkdir -p tests/.reg/actual
-          ls -la tests/.reg/actual
-          echo "Directory exists before reg-suit execution"
+      - name: Check reg file existence
+        id: check_files
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "tests/.reg/"
+
+      - name: Check actual file existence
+        id: check_files_actual
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "tests/.reg/actual"
 
       - name: Run visual regression tests
         run: |
-          pwd
-          ls -la /home/runner/work/actions-test/actions-test/tests/.reg/
-          ls -la /home/runner/work/actions-test/actions-test/tests/.reg/actual
           yarn vrt run
         env:
           REG_NOTIFY_GITHUB_PLUGIN_CLIENTID: ${{ secrets.REG_NOTIFY_GITHUB_PLUGIN_CLIENTID }}
