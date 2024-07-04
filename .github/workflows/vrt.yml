@@ -136,7 +136,7 @@ jobs:
           mkdir -p tests/.reg/actual
           ls -la tests/.reg/actual
           echo "Directory exists before reg-suit execution"
-          reg-suit run
+          npx reg-suit run
         env:
           REG_NOTIFY_GITHUB_PLUGIN_CLIENTID: ${{ secrets.REG_NOTIFY_GITHUB_PLUGIN_CLIENTID }}
 
