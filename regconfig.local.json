@@ -1,7 +1,7 @@
 {
   "core": {
     "workingDir": "tests/.reg",
-    "actualDir": "tests/__snapshot__",
+    "actualDir": "tests/directory_contains_actual_images",
     "thresholdRate": 0,
     "addIgnore": true,
     "ximgdiff": {

@@ -10,8 +10,8 @@
     "lint": "eslint --fix src/**/*.{ts,vue}",
     "vrt": "reg-suit run",
     "vrt:local": "reg-suit run -c regconfig.local.json",
-    "e2e:all": "rm -rf tests/__snapshot__ && playwright test",
-    "e2e:chromium": "rm -rf tests/__snapshot__ && playwright test --project=chromium"
+    "e2e:all": "playwright test",
+    "e2e:chromium": "rm -rf directory_contains_actual_images && playwright test --project=chromium"
   },
   "dependencies": {
     "vue": "^3.4.29"
@@ -27,6 +27,7 @@
     "eslint-plugin-vue": "^9.26.0",
     "reg-keygen-git-hash-plugin": "^0.14.3",
     "reg-notify-github-plugin": "^0.14.4",
+    "reg-publish-s3-plugin": "^0.14.4",
     "reg-suit": "^0.14.4",
     "typescript": "^5.5.2",
     "vite": "^5.3.1",

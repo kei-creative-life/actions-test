@@ -1,7 +1,7 @@
 {
   "core": {
     "workingDir": "tests/.reg",
-    "actualDir": "tests/.reg/actual",
+    "actualDir": "tests/directory_contains_actual_images",
     "thresholdRate": 0,
     "addIgnore": true,
     "ximgdiff": {
@@ -15,6 +15,10 @@
       "prCommentBehavior": "default",
       "clientId": "$REG_NOTIFY_GITHUB_PLUGIN_CLIENTID",
       "shortDescription": true
+    },
+    "reg-publish-s3-plugin": {
+      "bucketName": "$REG_S3_BUCKET_NAME",
+      "pathPrefix": "$PR_NUMBER"
     }
   }
 }
