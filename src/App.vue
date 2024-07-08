@@ -12,6 +12,9 @@
     over the years, sometimes by accident, sometimes on purpose (injected humour
     and the like).
   </h4>
+  <h1>変更しました</h1>
+  <Test1 />
+  <Test2 />
 </template>
 
 <style scoped>
