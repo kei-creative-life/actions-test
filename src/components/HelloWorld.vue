@@ -39,6 +39,7 @@ const count = ref(0);
     Click on the Vite and Vue logos to learn more！！！
   </p>
   <p>追加！！</p>
+  <p>追加しました！！</p>
   <Test1 />
   <Test2 />
 </template>
