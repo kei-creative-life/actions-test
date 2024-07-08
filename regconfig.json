@@ -9,7 +9,10 @@
     }
   },
   "plugins": {
-    "reg-keygen-git-hash-plugin": true,
+    "reg-simple-keygen-plugin": {
+      "expectedKey": "${VRT_BASE_SHA}",
+      "actualKey": "${VRT_HEAD_SHA}"
+    },
     "reg-notify-github-plugin": {
       "prComment": true,
       "prCommentBehavior": "default",
