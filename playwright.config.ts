@@ -12,11 +12,6 @@ import { defineConfig, devices } from "@playwright/test";
  */
 export default defineConfig({
   testDir: "./tests",
-  outputDir: "./tests/playwright-report",
-  reporter: [
-    ["html", { outputFolder: "./tests/playwright-report" }],
-    ["json", { outputFile: "./tests/playwright-report/test-results.json" }],
-  ],
   /* Run tests in files in parallel */
   fullyParallel: true,
   /* Fail the build on CI if you accidentally left test.only in the source code. */
