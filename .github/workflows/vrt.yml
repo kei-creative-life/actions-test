@@ -6,7 +6,7 @@ on:
       - "src/**"
       - "screenshots/**"
       - ".github/workflows/**"
-    types: [opened, synchronize, reopened, ready_for_review]
+    # types: [opened, synchronize, reopened, ready_for_review]
 
 permissions:
   contents: write
