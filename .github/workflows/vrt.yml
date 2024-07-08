@@ -64,4 +64,3 @@ jobs:
         env:
           REG_S3_BUCKET_NAME: ${{ secrets.REG_S3_BUCKET_NAME }}
           REG_NOTIFY_GITHUB_PLUGIN_CLIENTID: ${{ secrets.REG_NOTIFY_GITHUB_PLUGIN_CLIENTID }}
-          PR_NUMBER: ${{ github.event.repository.name }}-pr-${{ github.event.pull_request.number }}
