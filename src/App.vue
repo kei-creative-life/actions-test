@@ -1,7 +1,10 @@
-<script setup></script>
+<script setup>
+import Test1 from "./components/Test1.vue";
+</script>
 
 <template>
   <h1>変更しました</h1>
+  <Test1 />
 </template>
 
 <style scoped>
