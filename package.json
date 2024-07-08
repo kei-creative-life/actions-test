@@ -14,7 +14,8 @@
     "e2e:chromium": "rm -rf directory_contains_actual_images && playwright test --project=chromium"
   },
   "dependencies": {
-    "vue": "^3.4.29"
+    "vue": "^3.4.29",
+    "vue-router": "4"
   },
   "devDependencies": {
     "@playwright/test": "^1.45.0",
