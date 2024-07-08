@@ -15,7 +15,10 @@
       "clientId": "$REG_NOTIFY_GITHUB_PLUGIN_CLIENTID",
       "shortDescription": true
     },
-    "reg-keygen-git-hash-plugin": true,
+    "reg-simple-keygen-plugin": {
+      "expectedKey": "${VRT_BASE_SHA}",
+      "actualKey": "${VRT_HEAD_SHA}"
+    },
     "reg-publish-s3-plugin": {
       "bucketName": "$REG_S3_BUCKET_NAME"
     }
