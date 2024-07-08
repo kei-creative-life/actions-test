@@ -5,6 +5,7 @@ import Test1 from "./components/Test1.vue";
 <template>
   <h1>変更しました</h1>
   <Test1 />
+  <h2>変更しました!</h2>
 </template>
 
 <style scoped>
