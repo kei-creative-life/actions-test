@@ -9,6 +9,7 @@ import Test2 from "./components/Test2.vue";
   <Test2 />
   <h2>変更しました!</h2>
   <h3>変更しました!!!</h3>
+  <h4>変更しました!!!</h4>
 </template>
 
 <style scoped>
