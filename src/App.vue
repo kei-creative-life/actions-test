@@ -2,6 +2,7 @@
 
 <template>
   <h1>変更しました</h1>
+  <h2>変更しました!</h2>
 </template>
 
 <style scoped>
