@@ -1,6 +1,13 @@
 <script setup></script>
 
 <template>
+  <p>
+    Donate: If you use this site regularly and would like to help keep the site
+    on the Internet, please consider donating a small sum to help pay for the
+    hosting and bandwidth bill. There is no minimum donation, any sum is
+    appreciated - click here to donate using PayPal. Thank you for your support.
+    Donate bitcoin: 16UQLq1HZ3CNwhvgrarV6pMoA2CDjb4tyF
+  </p>
   <h4>
     It is a long established fact that a reader will be distracted by the
     readable content of a page when looking at its layout. The point of using
