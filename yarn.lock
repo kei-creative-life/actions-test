@@ -4553,9 +4553,9 @@ __metadata:
     "@vue/eslint-config-typescript": "npm:^13.0.0"
     eslint: "npm:^8.56.0"
     eslint-plugin-vue: "npm:^9.26.0"
+    reg-keygen-git-hash-plugin: "npm:^0.14.3"
     reg-notify-github-plugin: "npm:^0.14.4"
     reg-publish-s3-plugin: "npm:^0.14.4"
-    reg-simple-keygen-plugin: "npm:^0.14.2"
     reg-suit: "npm:^0.14.4"
     typescript: "npm:^5.5.2"
     vite: "npm:^5.3.1"
@@ -5143,6 +5143,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"reg-keygen-git-hash-plugin@npm:^0.14.3":
+  version: 0.14.3
+  resolution: "reg-keygen-git-hash-plugin@npm:0.14.3"
+  dependencies:
+    reg-suit-util: "npm:^0.14.3"
+    shell-escape: "npm:^0.2.0"
+  checksum: 10c0/06cdb5179542796456f06a1fd6e834d177f0618f56795964e33d19798e309166c4e28117e78e54d0f8060710239742ab68e2f5035a732d7377feadf20c770465
+  languageName: node
+  linkType: hard
+
 "reg-notify-github-plugin@npm:^0.14.4":
   version: 0.14.4
   resolution: "reg-notify-github-plugin@npm:0.14.4"
@@ -5165,13 +5175,6 @@ __metadata:
     reg-suit-util: "npm:^0.14.3"
     uuid: "npm:^9.0.0"
   checksum: 10c0/e224ad2e090ace1b97b66553d6402153232a46ddfd1009f0e3d04d1369a5e6da5ba960c07bb55fad97dc482dfe9e63a5b8899dde2a6f6dbf52fdec97417184f9
-  languageName: node
-  linkType: hard
-
-"reg-simple-keygen-plugin@npm:^0.14.2":
-  version: 0.14.2
-  resolution: "reg-simple-keygen-plugin@npm:0.14.2"
-  checksum: 10c0/26ff42baffe1521f82be43c9e619b08dfaf2426cbfd235e03d32f12a8db946c79eadcba3d488b1ea40ddb5ba0e2e3acc4bc2014e312b83fe2adad34e40caf262
   languageName: node
   linkType: hard
 
@@ -5512,6 +5515,13 @@ __metadata:
   version: 3.0.0
   resolution: "shebang-regex@npm:3.0.0"
   checksum: 10c0/1dbed0726dd0e1152a92696c76c7f06084eb32a90f0528d11acd764043aacf76994b2fb30aa1291a21bd019d6699164d048286309a278855ee7bec06cf6fb690
+  languageName: node
+  linkType: hard
+
+"shell-escape@npm:^0.2.0":
+  version: 0.2.0
+  resolution: "shell-escape@npm:0.2.0"
+  checksum: 10c0/501616713d13fd053b3858da18b613d83bfcdc8368e62be393dc563cc9fe2550492d403f73211e9a84429f39c8b9617f1e016dabee177b0ebdcb298fa47fc612
   languageName: node
   linkType: hard
 
