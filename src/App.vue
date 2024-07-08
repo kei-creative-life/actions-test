@@ -1,6 +1,4 @@
-<script setup>
-import HelloWorld from "./components/HelloWorld.vue";
-</script>
+<script setup></script>
 
 <template>
   <div>
@@ -11,7 +9,6 @@ import HelloWorld from "./components/HelloWorld.vue";
       <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
     </a>
   </div>
-  <HelloWorld msg="Vite + Vue" />
   <h1>これはVRTのテストです！！！！！</h1>
   <h2>VRTのテストです！</h2>
   <h2>テスト！！！！！</h2>
