@@ -53,8 +53,8 @@ jobs:
       - name: Install Playwright Browsers
         run: yarn playwright install --with-deps
 
-      - name: Run Playwright tests
-        run: yarn run e2e:all
+      - name: Take Snapshots
+        run: yarn run snapshot
 
       - name: Run visual regression tests
         run: |

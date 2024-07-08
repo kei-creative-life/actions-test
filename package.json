@@ -10,6 +10,7 @@
     "lint": "eslint --fix src/**/*.{ts,vue}",
     "vrt": "reg-suit run",
     "vrt:local": "reg-suit run -c regconfig.local.json",
+    "snapshot": "playwright test tests/snapshot.spec.ts",
     "e2e:all": "playwright test",
     "e2e:chromium": "rm -rf directory_contains_actual_images && playwright test --project=chromium"
   },
