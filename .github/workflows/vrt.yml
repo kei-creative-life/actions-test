@@ -32,6 +32,11 @@ jobs:
       - name: Install dependencies
         run: npm install -g yarn && yarn
 
+      # MEMO: 文字化けするので必要であればコメントはずす
+      # - name: install japanese font
+      #   run: |
+      #     sudo apt install fonts-ipafont fonts-ipaexfont
+
       - name: Install Playwright Browsers
         run: yarn playwright install --with-deps
 
@@ -48,23 +53,6 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ap-northeast-1
-
-      # - name: yarn install
-      #   run: rm -rf node_modules && yarn install
-
-      # - name: yarn build
-      #   run: yarn build
-
-      # MEMO: 文字化けするので必要であればコメントはずす
-      # - name: install japanese font
-      #   run: |
-      #     sudo apt install fonts-ipafont fonts-ipaexfont
-
-      # - name: Download actual snapshot to .reg/actual dir
-      #   uses: actions/download-artifact@v3
-      #   with:
-      #     name: playwright-actual-snapshot
-      #     path: tests/.reg/expected
 
       - name: Run visual regression tests
         run: |

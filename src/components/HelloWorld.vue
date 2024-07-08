@@ -35,7 +35,10 @@ const count = ref(0);
       >Vue Docs Scaling up Guide</a
     >.
   </p>
-  <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
+  <p class="read-the-docs">
+    Click on the Vite and Vue logos to learn more！！！
+  </p>
+  <p>追加！！</p>
   <Test1 />
   <Test2 />
 </template>
