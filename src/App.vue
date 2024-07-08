@@ -1,12 +1,7 @@
-<script setup>
-import Test1 from "./components/Test1.vue";
-import Test2 from "./components/Test2.vue";
-</script>
+<script setup></script>
 
 <template>
   <h1>変更しました</h1>
-  <Test1 />
-  <Test2 />
   <h2>変更しました!</h2>
   <h3>変更しました!!!</h3>
 </template>
