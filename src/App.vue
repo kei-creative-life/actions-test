@@ -1,4 +1,6 @@
-<script setup></script>
+<script setup>
+import Test3 from "./components/Test3.vue";
+</script>
 
 <template>
   <div>
@@ -11,9 +13,7 @@
   </div>
   <h1>これはVRTのテストです！！！！！</h1>
   <h2>VRTのテストです！</h2>
-  <h2>テスト！！！！！</h2>
-  <h2>テスト！！！！！</h2>
-  <h3>テスト！！！！！</h3>
+  <Test3 />
 </template>
 
 <style scoped>
